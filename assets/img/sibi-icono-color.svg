@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 233 220" width="233" height="220" role="img" aria-label="Icono SIBI">
+  <defs>
+    <linearGradient id="sibi-blue-grad" x1="0%" y1="0%" x2="100%" y2="85%">
+      <stop offset="0%" stop-color="#0d2845"/>
+      <stop offset="50%" stop-color="#164599"/>
+      <stop offset="100%" stop-color="#1f62ee"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="233" height="220" rx="55" ry="55" fill="url(#sibi-blue-grad)"/>
+  <g transform="translate(10, 10)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Páginas superiores y lomo central -->
+    <path d="M81.5 69 L34 97.5 Q75 125 116.5 156.5 L116.5 95 Q104 79 81.5 69 Z" stroke-width="5.2"/>
+    <path d="M151.5 69 L199 97.5 Q158 125 116.5 156.5 L116.5 95 Q129 79 151.5 69 Z" stroke-width="5.2"/>
+    <!-- Hoja intermedia -->
+    <path d="M34.5 109 Q75.5 135 116.5 162.5" stroke-width="3.5"/>
+    <path d="M198.5 109 Q157.5 135 116.5 162.5" stroke-width="3.5"/>
+    <!-- Cubierta inferior con lomo curvo -->
+    <path d="M25 116.5 L99 161.5 C104 165.5 106 171.5 116.5 171.5 C127 171.5 129 165.5 134 161.5 L208 116.5" stroke-width="5.8"/>
+    <!-- Trazos de circuitos (página izquierda) -->
+    <path d="M81.5 54 L81.5 80.5 L105 102 L105 132.5" stroke-width="2.8"/>
+    <path d="M71.5 88.5 L96.5 106.5 L96.5 129" stroke-width="2.8"/>
+    <path d="M59 97.5 L74 108 L82.5 108 L87.5 113 L87.5 120" stroke-width="2.8"/>
+    <!-- Trazos de circuitos (página derecha) -->
+    <path d="M151.5 54 L151.5 80.5 L128 102 L128 132.5" stroke-width="2.8"/>
+    <path d="M161.5 88.5 L136.5 106.5 L136.5 129" stroke-width="2.8"/>
+    <path d="M174 97.5 L159 108 L150.5 108 L145.5 113 L145.5 120" stroke-width="2.8"/>
+  </g>
+  <g transform="translate(10, 10)" fill="#ffffff">
+    <!-- Nodos página izquierda -->
+    <circle cx="81.5" cy="51" r="4.0"/>
+    <circle cx="105" cy="132.5" r="4.0"/>
+    <circle cx="71.5" cy="88.5" r="4.0"/>
+    <circle cx="59" cy="97.5" r="4.0"/>
+    <circle cx="87.5" cy="120" r="4.0"/>
+    <!-- Nodos página derecha -->
+    <circle cx="151.5" cy="51" r="4.0"/>
+    <circle cx="128" cy="132.5" r="4.0"/>
+    <circle cx="161.5" cy="88.5" r="4.0"/>
+    <circle cx="174" cy="97.5" r="4.0"/>
+    <circle cx="145.5" cy="120" r="4.0"/>
+  </g>
+</svg>
