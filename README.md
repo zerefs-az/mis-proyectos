@@ -1,22 +1,70 @@
-# SIBI — Sistema de Gestión Bibliotecaria (IEST La Recoleta · v6)
+# SIBI - Sistema de Gestión Bibliotecaria
 
-Sistema web completo en **PHP 8 + PDO + MySQL**, acompañado de la **demo HTML autónoma v6** (`demo/index.html`), los **diagramas UML y DER editables en draw.io** (`docs/SIBI-Diagramas-UML-DER.drawio`) y el **Informe Final v6 con todos los diagramas integrados** (`docs/Informe-Final-SIBI-IEST-La-Recoleta-v6.docx`).
+Proyecto web para la biblioteca del IEST La Recoleta. Sirve para buscar libros en el catálogo, controlar ejemplares físicos y registrar préstamos, renovaciones y devoluciones con cálculo automático de mora.
 
-## Qué incluye esta versión (v6)
-- **Identidad visual oficial de SIBI aplicada según contexto:**
-  - En el **Inicio de sesión** (`index.php` y `demo/index.html`): se muestra únicamente el **isotipo a color** (`assets/img/sibi-icono-color.svg`) centrado sobre la tarjeta de acceso y el logo institucional blanco del IEST La Recoleta (`assets/img/logo-recoleta-blanco.svg`) en el panel izquierdo.
-  - **Dentro del sistema** (`php/layout.php` y `demo/index.html`): la barra superior utiliza el **logotipo horizontal completo** (`assets/img/sibi-logo-color.svg`, isotipo + texto `SIBI`).
-- **Diagramas completos en draw.io (`docs/SIBI-Diagramas-UML-DER.drawio`):** Archivo editable de 5 pestañas listo para abrir en [app.diagrams.net](https://app.diagrams.net/) o draw.io Desktop:
-  1. Diagrama de Casos de Uso (UML)
-  2. Diagrama de Clases (UML)
-  3. Modelo Entidad-Relación (DER — 8 tablas reales de `sql/database.sql`)
-  4. Diagrama de Secuencia — Registrar Préstamo (Transacción InnoDB)
-  5. Diagrama de Flujo — Proceso de Préstamo (RN-01, RN-04, RN-05)
-- **Informe Final v6 sincronizado:** Integra visualmente las 5 figuras de diagramas en el Capítulo 3 más los 2 wireframes y el control de versiones v6.
-- **Un solo menú superior responsivo** (cero barras laterales duplicadas), **SQL UTF-8 (`SET NAMES utf8mb4;`) con hashes bcrypt verificados para `123456`** y **exportación CSV limpia para Excel**.
+Está hecho en PHP 8 (PDO), MySQL y JavaScript puro, pensado para correr en XAMPP o en un hosting compartido sin instalar librerías externas.
 
-## Instalación rápida en XAMPP
+## Funcionalidades principales
+
+- Acceso con roles separados (Administrador, Bibliotecario y Lector) y contraseñas cifradas con `password_hash()`.
+- Catálogo con buscador por título, autor o categoría, vista de ejemplares disponibles y subida de portadas.
+- Mostrador para registrar préstamos, devoluciones y renovaciones aplicando las reglas de días, tope de renovaciones y mora por retraso.
+- Gestión de lectores y personal: registro, edición de datos, historial de préstamos y restablecimiento de contraseña desde el rol administrador.
+- Edición de perfil propio (`perfil.php`) con cambio de clave y foto de perfil en proporción 1:1.
+- Panel de administración con resumen general, cobro o condonación de moras, configuración de parámetros y descarga de reportes en CSV.
+
+## Tecnologías
+
+- PHP 8 + PDO
+- MySQL / MariaDB (motor InnoDB)
+- HTML5, CSS3 y JavaScript
+- Apache (XAMPP)
+
+## Estructura de carpetas
+
+```text
+sibi-biblioteca/
+├── index.php              # Inicio de sesión
+├── catalogo.php           # Catálogo y búsqueda
+├── libro.php              # Detalle del libro y ejemplares
+├── mostrador.php          # Préstamos, renovaciones y devoluciones
+├── catalogo_admin.php     # Mantenimiento de libros, autores y categorías
+├── lectores.php           # Gestión de lectores y personal
+├── perfil.php             # Perfil propio, foto y cambio de contraseña
+├── panel.php              # Panel del administrador y configuración
+├── exportar_csv.php       # Exportación de préstamos a CSV
+├── config/db.php          # Conexión a la base de datos
+├── php/                   # Lógica del servidor, sesiones y plantilla
+├── css/ y js/             # Estilos y scripts del cliente
+├── assets/img/            # Logos, portadas y avatares
+├── sql/database.sql       # Tablas y datos de prueba
+├── demo/index.html        # Demo estática para probar sin servidor
+└── docs/                  # Informe y diagramas (.drawio)
+```
+
+## Instalación en local (XAMPP)
+
 1. Copia la carpeta `sibi-biblioteca` dentro de `C:\xampp\htdocs\`.
-2. Inicia **Apache** y **MySQL** en XAMPP Control Panel.
-3. En `http://localhost/phpmyadmin`, importa `sql/database.sql`.
-4. Abre `http://localhost/sibi-biblioteca/` e inicia sesión con las cuentas de `USUARIOS.md` (clave `123456`).
+2. Inicia Apache y MySQL en XAMPP.
+3. Entra a `http://localhost/phpmyadmin`, abre la pestaña Importar y sube `sql/database.sql`.
+4. Si tu MySQL tiene contraseña, cámbiala en `config/db.php`.
+5. Abre `http://localhost/sibi-biblioteca/` en el navegador.
+
+## Despliegue en hosting compartido (ej. InfinityFree)
+
+Si vas a subirlo a un servidor gratuito:
+- Crea primero la base de datos desde el panel del hosting.
+- Quita las líneas `CREATE DATABASE` y `USE sibi_biblioteca;` antes de importar el archivo SQL en phpMyAdmin.
+- Cambia `$DB_HOST`, `$DB_NAME`, `$DB_USER` y `$DB_PASS` en `config/db.php` por los datos de tu cuenta.
+
+## Cuentas de prueba
+
+Todas vienen con la clave `123456`:
+
+| Rol | Correo | Clave |
+| :--- | :--- | :--- |
+| Administrador | `admin@sibi.edu.pe` | `123456` |
+| Bibliotecario | `biblio@sibi.edu.pe` | `123456` |
+| Lector | `mateo@sibi.edu.pe` | `123456` |
+
+En `USUARIOS.md` está la lista completa de cuentas y códigos de ejemplares de ejemplo.
